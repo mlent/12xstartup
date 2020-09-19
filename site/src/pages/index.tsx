@@ -155,7 +155,7 @@ const ParticipantName = styled('p')`
   margin-bottom: 0;
 `;
 
-const TwitterWrapper = styled('div')`
+const TwitterWrapper = styled('a')`
   display: inline-block;
   padding-top: ${(p) => p.theme.spacing(2.3)}px;
   color: #91d5ff;
@@ -448,30 +448,33 @@ export default function () {
                 <ParticipantNameWrapper>
                   <ParticipantName>
                     {p.name}{' '}
-                    <Status
-                      status={p.status}
+                    <Tooltip
+                      placement="top"
                       title={
                         p.status == 'online'
                           ? `${toFirstName(p.name)} is working right now!`
                           : `${toFirstName(p.name)} is doing other things`
                       }
-                    />
+                    >
+                      <Status status={p.status} />
+                    </Tooltip>
                   </ParticipantName>
-                  <TwitterWrapper>
-                    <Tooltip
-                      placement="top"
+                  <Tooltip
+                    placement="top"
+                    title={`See what ${toFirstName(
+                      p.name
+                    )} is making on Twitter`}
+                  >
+                    <TwitterWrapper
+                      href={`https://twitter.com/${p.twitter}`}
+                      target="_blank"
                       title={`See what ${toFirstName(
                         p.name
                       )} is making on Twitter`}
                     >
-                      <a
-                        href={`https://twitter.com/${p.twitter}`}
-                        target="_blank"
-                      >
-                        <Twitter size={18} />
-                      </a>
-                    </Tooltip>
-                  </TwitterWrapper>
+                      <Twitter size={18} />
+                    </TwitterWrapper>
+                  </Tooltip>
                 </ParticipantNameWrapper>
                 <ParticipantLocation>
                   <MapPin size={12} /> {p.location}
