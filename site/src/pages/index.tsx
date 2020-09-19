@@ -448,16 +448,14 @@ export default function () {
                 <ParticipantNameWrapper>
                   <ParticipantName>
                     {p.name}{' '}
-                    <Tooltip
-                      placement="top"
+                    <Status
+                      status={p.status}
                       title={
                         p.status == 'online'
                           ? `${toFirstName(p.name)} is working right now!`
                           : `${toFirstName(p.name)} is doing other things`
                       }
-                    >
-                      <Status status={p.status} />
-                    </Tooltip>
+                    />
                   </ParticipantName>
                   <TwitterWrapper>
                     <Tooltip
