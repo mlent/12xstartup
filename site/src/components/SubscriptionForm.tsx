@@ -41,7 +41,7 @@ const InnerFormWrapper = styled('form')`
   grid-template-columns: 4fr 2fr;
   grid-row-gap: ${(p) => p.theme.spacing(1)}px;
   grid-column-gap: ${(p) => p.theme.spacing(1)}px;
-  background-color: #69c0ff;
+  background-color: #635786;
   padding: ${(p) => p.theme.spacing(1)}px;
   border-radius: ${(p) => p.theme.custom.borderRadius.unit * 3}px;
 

@@ -6,9 +6,9 @@ export const COLORS = {
     contrastText: '#fff'
   },
   secondary: {
-    light: '#ff8cb3',
-    dark: '#c51162',
-    main: '#f50057',
+    light: '#f7797b',
+    dark: '#ab001a',
+    main: '#de2635',
     contrastText: '#fff'
   },
   success: {

@@ -158,7 +158,7 @@ const ParticipantName = styled('p')`
 const TwitterWrapper = styled('div')`
   display: inline-block;
   padding-top: ${(p) => p.theme.spacing(2.3)}px;
-  color: ${(p) => p.theme.palette.primary.light};
+  color: #91d5ff;
 `;
 
 const ParticipantNameWrapper = styled('div')`
@@ -439,8 +439,8 @@ export default function () {
         <Grid>
           {PARTICIPANTS.map((p) => (
             <Participant key={p.name}>
-              <ParticipantImage src={p.img} alt={p.name} key={p.name} />
-              <ParticipantInner>
+              <ParticipantImage src={p.img} alt={p.name} />
+              <ParticipantInner key={p.name}>
                 <ParticipantNameWrapper>
                   <ParticipantName>
                     {p.name}{' '}

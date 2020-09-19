@@ -12,7 +12,7 @@ module.exports = {
     logoUrl: '/images/logo.png',
     logoLabel: '12x Startup',
     searchText: 'Search',
-    faviconUrl: '/images/favicon.png',
+    faviconUrl: '/favicon.png',
     socialSharingImageUrl: '/images/social-sharing-preview.png',
     facebookUrl: 'https://www.facebook.com/yourpage',
     googleTagManagerId: 'UA-178445735-1',

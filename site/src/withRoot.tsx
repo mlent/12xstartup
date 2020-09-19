@@ -15,10 +15,16 @@ const styles = css`
 
   body {
     margin: 0;
-    background-color: #40a9ff;
+    background-image: -webkit-gradient(
+      linear,
+      left top,
+      left bottom,
+      from(#20153f),
+      to(#1b1b35)
+    );
     font-family: 'Open Sans', sans-serif;
     overflow-x: hidden;
-    color: #e6f7ff;
+    color: hsla(0, 0%, 100%, 0.8);
   }
 
   a {
