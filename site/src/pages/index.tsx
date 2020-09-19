@@ -241,7 +241,7 @@ const PARTICIPANT_PEOPLE: IParticipantHash = {
     lastUpdated: new Date(),
     img: '/images/monica.jpg',
     twitter: 'monicalent',
-    status: 'online',
+    status: 'offline',
     location: 'Berlin, Germany',
     statusMessage: 'Creating the 12xstartup.com homepage',
     currentProjectName: '12xStartup',
