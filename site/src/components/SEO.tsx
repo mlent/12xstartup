@@ -55,7 +55,6 @@ export const SEO = ({
           facebookUrl
           socialSharingImageUrl
           titleTemplate
-          twitter
           googleTagManagerId
           googleAnalyticsMeasurementId
         }
@@ -75,7 +74,6 @@ export const SEO = ({
     socialSharingImageUrl: defaultSocialSharingImageUrl,
     googleTagManagerId,
     googleAnalyticsMeasurementId,
-    twitter,
     siteName
   } = data.site.siteMetadata;
 
@@ -125,7 +123,6 @@ export const SEO = ({
         {seo.image && <meta property="og:image" content={seo.image} />}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="" />
-        {twitter && <meta name="twitter:creator" content={twitter} />}
         {seo.title && <meta name="twitter:title" content={seo.title} />}
         {seo.description && (
           <meta name="twitter:description" content={seo.description} />
