@@ -102,11 +102,20 @@ const Participant = styled(Paper)`
 
 const Status = styled<'div', { status: 'online' | 'offline' }>('div')`
   display: inline-block;
-  margin-left: ${(p) => p.theme.spacing(1)}px;
+  margin-left: ${(p) => p.theme.spacing(1.5)}px;
   height: 12px;
   width: 12px;
-  background-color: ${(p) => (p.status === 'online' ? '#bae637' : '#8c8c8c')};
+  background-color: ${(p) =>
+    p.status === 'online' ? 'rgba(51, 217, 178, 1)' : '#8c8c8c'};
   border-radius: 100%;
+  ${(p) =>
+    p.status === 'online' &&
+    `
+		background: rgba(51, 217, 178, 1);
+    box-shadow: 0 0 0 0 rgba(51, 217, 178, 1);
+    transform: scale(1);
+    animation: pulse 2s infinite;
+  `}
 `;
 
 const ParticipantLocation = styled('p')`
@@ -140,6 +149,7 @@ const ParticipantImage = styled('img')`
 `;
 
 const ParticipantName = styled('p')`
+  position: relative;
   display: flex;
   align-items: center;
   font-weight: ${(p) => p.theme.typography.fontWeightBold};
@@ -148,7 +158,7 @@ const ParticipantName = styled('p')`
 
 const TwitterWrapper = styled('div')`
   display: inline-block;
-  padding-top: ${(p) => p.theme.spacing(2)}px;
+  padding-top: ${(p) => p.theme.spacing(2.3)}px;
   color: ${(p) => p.theme.palette.primary.light};
 `;
 
@@ -431,7 +441,7 @@ export default function () {
         <Grid>
           {PARTICIPANTS.map((p) => (
             <Participant key={p.name}>
-              <ParticipantImage src={p.img} alt={p.name} />
+              <ParticipantImage src={p.img} alt={p.name} key={p.name} />
               <ParticipantInner>
                 <ParticipantNameWrapper>
                   <ParticipantName>
