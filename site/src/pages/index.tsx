@@ -403,14 +403,13 @@ export default function () {
       }
     }
   `);
-  const [tweetsLoaded, setTweetsLoaded] = useState(false);
   const siteMetadata = data.site.siteMetadata;
 
   return (
     <div>
       <SEO
-        seoTitle="Blogging For Devs: Learn to Grow Your Developer Blog"
-        seoDescription="Get advice and resources for creating a strategy for your developer blog, and create content that reaches thousands without an existing audience."
+        seoTitle={siteMetadata.title}
+        seoDescription={siteMetadata.description}
         title={siteMetadata.title}
         description={siteMetadata.description}
         siteUrl={siteMetadata.siteUrl}

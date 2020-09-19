@@ -12,6 +12,8 @@ if (typeof window !== 'undefined') {
   gtag = () => {};
 }
 
+// TODO: Replace with dedicated form!
+
 const YOUR_FORM_ID = '1377786';
 const YOUR_FORM_URL = `https://app.convertkit.com/forms/${YOUR_FORM_ID}/subscriptions`;
 
