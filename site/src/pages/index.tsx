@@ -183,10 +183,12 @@ const ProjectGrid = styled('div')`
   padding: ${(p) => p.theme.spacing(1)}px ${(p) => p.theme.spacing(3)}px;
 
   @media (max-width: 600px) {
+    grid-row-gap: ${(p) => p.theme.spacing(1)}px;
+    padding: ${(p) => p.theme.spacing(1)}px;
     grid-template-areas:
-      'project-link project-status'
+      'project-link project-participant'
       'project-description project-description'
-      'project-participant project-participant';
+      'project-status project-status';
     grid-template-columns: 2fr 1fr;
   }
 `;
@@ -391,6 +393,8 @@ const MakingStatus = styled<'div', { status: 'making' | 'finished' }>('div')`
   border-radius: ${(p) => p.theme.custom.borderRadius.unit * 2}px;
 `;
 
+const toFirstName = (name: string) => name.split(' ')[0];
+
 export default function () {
   const data: Data = useStaticQuery(graphql`
     query {
@@ -448,8 +452,8 @@ export default function () {
                       placement="top"
                       title={
                         p.status == 'online'
-                          ? `${p.name} is working right now!`
-                          : `${p.name} is doing other things`
+                          ? `${toFirstName(p.name)} is working right now!`
+                          : `${toFirstName(p.name)} is doing other things`
                       }
                     >
                       <Status status={p.status} />
@@ -458,7 +462,9 @@ export default function () {
                   <TwitterWrapper>
                     <Tooltip
                       placement="top"
-                      title={`See what ${p.name} is making on Twitter`}
+                      title={`See what ${toFirstName(
+                        p.name
+                      )} is making on Twitter`}
                     >
                       <a
                         href={`https://twitter.com/${p.twitter}`}
@@ -507,7 +513,7 @@ export default function () {
               </ProjectLink>
               <ProjectDescription>{p.projectDescription}</ProjectDescription>
               <ProjectParticipantName>
-                {p.participant.name}
+                {toFirstName(p.participant.name)}
               </ProjectParticipantName>
               <MakingStatus status={p.status}>
                 {p.status === 'making' && 'Making now'}

@@ -15,6 +15,7 @@ const styles = css`
 
   body {
     margin: 0;
+    padding: 1.5rem;
     background-image: -webkit-gradient(
       linear,
       left top,
