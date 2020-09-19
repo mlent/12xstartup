@@ -241,7 +241,7 @@ const PARTICIPANT_PEOPLE: IParticipantHash = {
   swyx: {
     name: 'Swyx',
     lastUpdated: new Date(),
-    img: '/images/swyx.jpg',
+    img: '/images/swyx.jpeg',
     twitter: 'swyx',
     status: 'online',
     location: 'Singapore',
