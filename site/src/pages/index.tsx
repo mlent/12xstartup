@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Tooltip, Paper, Typography } from '@material-ui/core';
 import { subDays, formatDistance } from 'date-fns';
-import { shuffle } from 'lodash';
 import { graphql, useStaticQuery } from 'gatsby';
 import { SiteMetadata } from '../types/SiteMetadata';
 import { MapPin, Twitter, ExternalLink } from 'react-feather';
@@ -294,7 +293,7 @@ const PARTICIPANT_PEOPLE: IParticipantHash = {
   }
 };
 
-const PARTICIPANTS: IParticipant[] = shuffle(Object.values(PARTICIPANT_PEOPLE));
+const PARTICIPANTS: IParticipant[] = Object.values(PARTICIPANT_PEOPLE);
 
 type IProjects = {
   icon: string;
