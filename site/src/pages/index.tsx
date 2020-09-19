@@ -69,7 +69,7 @@ const Title = styled('h1')`
 
 const FormWrapper = styled('div')`
   margin: ${(p) => p.theme.spacing(6)}px auto;
-  max-width: 600;
+  max-width: 500px;
 `;
 
 const Subheading = styled('h2')`
@@ -390,9 +390,6 @@ export default function () {
           title
           siteUrl
           description
-          headline
-          footerText
-          footerUrl
         }
       }
     }
@@ -423,8 +420,8 @@ export default function () {
             </Typography>
             <FormWrapper>
               <Typography variant="body1" component="p" paragraph>
-                Join our <strong>monthly livestreamed demo days</strong>, sign
-                up for an invite! No spam.
+                Join our <strong>monthly livestreamed demo days</strong>,<br />
+                sign up for an invite! No spam.
               </Typography>
               <InnerForm />
             </FormWrapper>

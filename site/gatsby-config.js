@@ -2,29 +2,21 @@ module.exports = {
   siteMetadata: {
     htmlLang: 'en',
     contentLang: 'en-us',
-    title: 'Blogging for Devs: Free Email Course & Newsletter',
-    titleTemplate: '%s · Blogging for Devs',
+    title:
+      '12x Startup: Five people build open startups every month for a year',
+    titleTemplate: '%s · 12x Startup',
     description:
-      'Learn how to write content that reaches thousands without an existing audience.',
-    siteUrl: 'https://bloggingfordevs.com',
-    siteName: 'Blogging for Devs: Free Email Course & Newsletter',
+      'Join us as we build in public and each create an open startup per month for a year.',
+    siteUrl: 'https://12xstartup.com',
+    siteName: '12x Startup: Five people building open startups for a year',
     logoUrl: '/images/logo.png',
-    logoLabel: 'Blogging for Devs',
-    logoSubLabel: 'Free Email Course',
+    logoLabel: '12x Startup',
     searchText: 'Search',
     faviconUrl: '/images/favicon.png',
     socialSharingImageUrl: '/images/social-sharing-preview.png',
-    twitter: '@monicalent',
     facebookUrl: 'https://www.facebook.com/yourpage',
-    ctaButtonText: 'Get the free course',
-    ctaButtonUrl: '#signup',
-    linkText: '',
-    linkUrl: '',
-    headline: "You don't have to be Twitter-famous to grow your blog",
-    footerText: 'Back to main website',
-    footerUrl: 'https://monicalent.com',
-    googleTagManagerId: 'UA-165916146-1',
-    googleAnalyticsMeasurementId: 'UA-165916146-1'
+    googleTagManagerId: 'UA-178445735-1',
+    googleAnalyticsMeasurementId: 'UA-178445735-1'
   },
   plugins: [
     'gatsby-plugin-typescript',

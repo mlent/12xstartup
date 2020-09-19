@@ -16,7 +16,6 @@ export type SiteMetadata = {
   linkText: string;
   linkUrl: string;
   headline: string;
-  footerUrl: string;
   footerText: string;
   googleTagManagerId: string;
   googleAnalyticsMeasurementId: string;
