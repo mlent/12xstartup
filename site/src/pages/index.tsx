@@ -17,6 +17,10 @@ type Data = {
   };
 };
 
+const StyledLink = styled('a')`
+  border-bottom: 1px solid #fff;
+`;
+
 const Content = styled('div')`
   max-width: 500px;
   margin: ${(p) => p.theme.spacing(8)}px auto;
@@ -29,7 +33,6 @@ const Shoutout = styled('div')`
   a {
     display: flex;
     align-items: center;
-    border-bottom: 1px solid #fff;
     display: inline-block;
   }
 
@@ -413,7 +416,7 @@ export default function () {
               paragraph
               style={{ fontWeight: 700 }}
             >
-              Five people build open startups every month for a year ✌️
+              Five people each build open startups every month for a year ✌️
             </Typography>
             <FormWrapper>
               <Typography variant="body1" component="p" paragraph>
@@ -502,7 +505,10 @@ export default function () {
               <Typography variant="body1" component="p" paragraph>
                 Plus our trusty advisor and resident lurker{' '}
                 <ShoutoutImg src="/images/dom.jpeg" alt="Dominic Monn" />{' '}
-                <a href="https://twitter.com/dqmonn">Dominic Monn</a>.
+                <StyledLink href="https://twitter.com/dqmonn">
+                  Dominic Monn
+                </StyledLink>
+                .
               </Typography>
             </Shoutout>
             <Subheading>What we're building now</Subheading>
@@ -537,6 +543,31 @@ export default function () {
                 </ProjectGrid>
               ))}
             </ProjectWrapper>
+            <Typography
+              variant="body1"
+              component="p"
+              paragraph
+              style={{ textAlign: 'center' }}
+            >
+              Have an idea for us? You can{' '}
+              <StyledLink
+                href="https://airtable.com/shrEHSP7akhszHnao"
+                onClick={(e: React.SyntheticEvent) => {
+                  e.preventDefault();
+                  const left = window.screen.width / 3;
+                  const top = window.screen.height / 2;
+                  window.open(
+                    'https://airtable.com/shrEHSP7akhszHnao',
+                    'request-startup',
+                    `width=400,height=700,top=${top},left=${left}`
+                  );
+                }}
+                target="_blank"
+              >
+                request a startup
+              </StyledLink>
+              .
+            </Typography>
           </>
         )}
         <Content>
