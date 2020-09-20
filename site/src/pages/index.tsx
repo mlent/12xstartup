@@ -574,7 +574,7 @@ export default function () {
                       />
                     )}
                     <LastUpdated>
-                      LAST UPDATED:{' '}
+                      UPDATED:{' '}
                       {formatDistance(
                         new Date(p.fields['Last Updated']),
                         new Date()
