@@ -419,18 +419,19 @@ const ProjectIcon = styled<'div', { iconColor: string; icon: string }>('div')`
   background-color: ${(p) => p.iconColor};
 `;
 
-const MakingStatus = styled<'div', { status: 'making' | 'finished' }>('div')`
+const MakingStatus = styled<'div', { status: 'Making' | 'Finished' }>('div')`
   grid-area: project-status;
   display: inline-block;
-  background-color: ${(p) => (p.status === 'making' ? '#ffe58f' : '#eaff8f')};
+  background-color: ${(p) => (p.status === 'Making' ? '#ffe58f' : '#eaff8f')};
   text-align: center;
-  color: ${(p) => (p.status === 'making' ? '#ad6800' : '#5b8c00')};
+  color: ${(p) => (p.status === 'Making' ? '#ad6800' : '#5b8c00')};
   padding: ${(p) => p.theme.spacing(1)}px ${(p) => p.theme.spacing(3)}px;
   font-weight: ${(p) => p.theme.typography.fontWeightBold};
   border-radius: ${(p) => p.theme.custom.borderRadius.unit * 2}px;
 `;
 
-const toFirstName = (name: string) => name.split(' ')[0];
+const toFirstName = (name: string | undefined) =>
+  name ? name.split(' ')[0] : null;
 
 const ForProject = ({
   currentProjectId,
@@ -593,26 +594,32 @@ export default function () {
             </Shoutout>
             <Subheading>What we're building</Subheading>
             <ProjectWrapper>
-              {PROJECTS.map((p) => (
-                <ProjectGrid key={p.projectName}>
+              {data.projects.map((p) => (
+                <ProjectGrid key={p.fields.Name}>
                   <ProjectLink
-                    href={p.projectUrl}
+                    href={p.fields.URL}
                     target="_blank"
                     rel="noopener"
                   >
-                    <ProjectIcon iconColor={p.iconColor} icon={p.icon} />{' '}
-                    {p.projectName}&nbsp;
+                    <ProjectIcon
+                      iconColor={p.fields.Color}
+                      icon={p.fields.URL}
+                    />{' '}
+                    {p.fields.Name}&nbsp;
                     <ExternalLink size={16} style={{ opacity: 0.5 }} />
                   </ProjectLink>
                   <ProjectDescription>
-                    {p.projectDescription}
+                    {p.fields.Description}
                   </ProjectDescription>
                   <ProjectParticipantName>
-                    {toFirstName(p.participant.name)}
+                    {toFirstName(
+                      data.participants.find((participant) =>
+                        p.fields.Participants.includes(participant.id)
+                      )?.fields.Name
+                    )}
                   </ProjectParticipantName>
-                  <MakingStatus status={p.status}>
-                    {p.status === 'making' && 'Making now'}
-                    {p.status === 'finished' && 'Shipped'}
+                  <MakingStatus status={p.fields.Status}>
+                    {p.fields.Status}
                   </MakingStatus>
                 </ProjectGrid>
               ))}
