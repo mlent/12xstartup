@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { capitalize } from 'lodash';
 import { Tooltip, Paper, Typography } from '@material-ui/core';
-import { subDays, formatDistance } from 'date-fns';
+import { formatDistance } from 'date-fns';
 import { graphql, useStaticQuery } from 'gatsby';
 import { SiteMetadata } from '../types/SiteMetadata';
 import { MapPin, Twitter, ExternalLink } from 'react-feather';
@@ -84,8 +85,6 @@ const Subheading = styled('h2')`
 const Participant = styled(Paper)`
   margin-bottom: ${(p) => p.theme.spacing(1)}px;
   overflow: hidden;
-  display: grid;
-  grid-template-columns: 1fr;
 
   img {
     filter: grayscale(100%) contrast(1.5) brightness(1.05);
@@ -125,6 +124,8 @@ const ParticipantLocation = styled('p')`
 `;
 
 const ParticipantInner = styled('div')`
+  position: relative;
+  height: 240px;
   padding: ${(p) => p.theme.spacing(1)}px ${(p) => p.theme.spacing(3)}px;
   max-width: 100%;
 
@@ -169,6 +170,8 @@ const ParticipantNameWrapper = styled('div')`
 `;
 
 const LastUpdated = styled('p')`
+  position: absolute;
+  bottom: ${(p) => p.theme.spacing(1)}px;
   color: ${(p) => p.theme.palette.grey.A200};
   font-weight: ${(p) => p.theme.typography.fontWeightBold};
   font-size: 12px;
@@ -574,10 +577,11 @@ export default function () {
                       />
                     )}
                     <LastUpdated>
-                      UPDATED:{' '}
-                      {formatDistance(
-                        new Date(p.fields['Last Updated']),
-                        new Date()
+                      {capitalize(
+                        formatDistance(
+                          new Date(p.fields['Last Updated']),
+                          new Date()
+                        )
                       )}{' '}
                       ago
                     </LastUpdated>
@@ -592,7 +596,7 @@ export default function () {
                 <a href="https://twitter.com/dqmonn">Dominic Monn</a>.
               </Typography>
             </Shoutout>
-            <Subheading>What we're building</Subheading>
+            <Subheading>What we're building now</Subheading>
             <ProjectWrapper>
               {data.projects.map((p) => (
                 <ProjectGrid key={p.fields.Name}>
