@@ -17,6 +17,11 @@ type Data = {
   };
 };
 
+const Content = styled('div')`
+  max-width: 500px;
+  margin: ${(p) => p.theme.spacing(8)}px auto;
+`;
+
 const Shoutout = styled('div')`
   text-align: center;
   margin-bottom: ${(p) => p.theme.spacing(6)}px;
@@ -86,6 +91,11 @@ const Participant = styled(Paper)`
   margin-bottom: ${(p) => p.theme.spacing(1)}px;
   overflow: hidden;
 
+  &:hover .participant-image:before {
+    filter: grayscale(0) contrast(1) brightness(1.1);
+    transition: filter 0.2s linear;
+  }
+
   img {
     filter: grayscale(100%) contrast(1.5) brightness(1.05);
     transition: filter 0.2s linear;
@@ -145,9 +155,29 @@ const ParticipantStatusMessage = styled('p')`
   font-style: italic;
 `;
 
-const ParticipantImage = styled('img')`
+const Img = styled<'div', { src: string }>('div')`
+  height: 230px;
   max-width: 100%;
+  background-color: #ddd;
+  position: relative;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-image: url(${(p) => p.src});
+    filter: grayscale(100%) contrast(1.5) brightness(1.05);
+    transition: filter 0.2s linear;
+  }
 `;
+
+const ParticipantImage = ({ src }: { src: string }) => {
+  return <Img className="participant-image" src={src} />;
+};
 
 const ParticipantName = styled('p')`
   position: relative;
@@ -225,6 +255,13 @@ const Grid = styled('div')`
   }
 `;
 
+type IResponse = {
+  data: {
+    projects: IAirtableProjectResponse;
+    participants: IAirtableParticipantResponse;
+  };
+};
+
 type IAirtableProjectResponse = {
   records: IAirtableProject[];
 };
@@ -260,140 +297,6 @@ type IAirtableParticipant = {
   };
   createdTime: string;
 };
-
-type IParticipant = {
-  name: string;
-  img: string;
-  lastUpdated: Date;
-  twitter: string;
-  status: 'online' | 'offline';
-  location: string;
-  statusMessage: string;
-  currentProjectName: string;
-  currentProjectUrl: string;
-};
-
-type IParticipantHash = {
-  [name: string]: IParticipant;
-};
-
-const PARTICIPANT_PEOPLE: IParticipantHash = {
-  monica: {
-    name: 'Monica Lent',
-    lastUpdated: new Date(),
-    img: '/images/monica.jpg',
-    twitter: 'monicalent',
-    status: 'offline',
-    location: 'Berlin, Germany',
-    statusMessage: 'Creating the 12xstartup.com homepage',
-    currentProjectName: '12xStartup',
-    currentProjectUrl: 'https://12xstartup.com'
-  },
-  swyx: {
-    name: 'Swyx',
-    lastUpdated: new Date(),
-    img: '/images/swyx.jpeg',
-    twitter: 'swyx',
-    status: 'online',
-    location: 'Singapore',
-    statusMessage: 'Putting his ideas into a google doc',
-    currentProjectName: 'Unknown',
-    currentProjectUrl: '#'
-  },
-  toheeb: {
-    name: 'Toheeb Ogunbiyi',
-    lastUpdated: new Date(),
-    img: '/images/toheeb.jpg',
-    twitter: 'toheebdotcom',
-    status: 'online',
-    location: 'Abuja, Nigeria',
-    statusMessage: 'Putting his ideas into a google doc',
-    currentProjectName: 'Unknown',
-    currentProjectUrl: '#'
-  },
-  dylan: {
-    name: 'Dylan Wilson',
-    lastUpdated: new Date(),
-    img: '/images/dylan.jpeg',
-    twitter: 'dylanwilson80',
-    status: 'online',
-    location: 'Brisbane, Australia',
-    statusMessage: 'Putting his ideas into a google doc',
-    currentProjectName: 'Unknown',
-    currentProjectUrl: '#'
-  },
-  dmitrii: {
-    name: 'Dmitrii Pashutskii',
-    lastUpdated: new Date(),
-    img: '/images/dmitrii.jpeg',
-    twitter: 'guar47',
-    status: 'online',
-    location: 'Bali, Indonesia',
-    statusMessage: 'Putting his ideas into a google doc',
-    currentProjectName: 'Unknown',
-    currentProjectUrl: '#'
-  }
-};
-
-const PARTICIPANTS: IParticipant[] = Object.values(PARTICIPANT_PEOPLE);
-
-type IProjects = {
-  icon: string;
-  iconColor: string;
-  projectName: string;
-  projectUrl: string;
-  projectDescription: string;
-  participant: IParticipant;
-  status: 'making' | 'finished';
-};
-
-const PROJECTS: IProjects[] = [
-  {
-    icon: '',
-    iconColor: '#FF4D4F',
-    projectName: 'Loopybit',
-    projectUrl: '#',
-    projectDescription: 'This is my project',
-    participant: PARTICIPANT_PEOPLE.monica,
-    status: 'making'
-  },
-  {
-    icon: '',
-    iconColor: '#faad14',
-    projectName: 'Funkytown',
-    projectUrl: '#',
-    projectDescription: 'This is my project',
-    participant: PARTICIPANT_PEOPLE.dylan,
-    status: 'making'
-  },
-  {
-    icon: '',
-    iconColor: '#722ed1',
-    projectName: 'Happyfeet',
-    projectUrl: '#',
-    projectDescription: 'This is my project',
-    participant: PARTICIPANT_PEOPLE.toheeb,
-    status: 'making'
-  },
-  {
-    icon: '',
-    iconColor: '#fa541c',
-    projectName: 'Jollybear',
-    projectUrl: '#',
-    projectDescription: 'This is my project',
-    participant: PARTICIPANT_PEOPLE.dmitrii,
-    status: 'making'
-  },
-  {
-    icon: '',
-    iconColor: '#52c41a',
-    projectName: 'Sillypants',
-    projectUrl: '#',
-    projectDescription: 'This is my project',
-    participant: PARTICIPANT_PEOPLE.swyx,
-    status: 'making'
-  }
-];
 
 const ProjectLink = styled('a')`
   grid-area: project-link;
@@ -475,11 +378,11 @@ export default function () {
   const [data, setData] = useState<{
     projects: IAirtableProject[];
     participants: IAirtableParticipant[];
-  } | null>(null);
+  } | null>({ projects: [], participants: [{} as any, {}, {}, {}, {}] });
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await axios.get('/.netlify/functions/get-data');
+      const result: IResponse = await axios.get('/.netlify/functions/get-data');
       const r = {
         projects: result.data.projects.records,
         participants: result.data.participants.records
@@ -526,65 +429,71 @@ export default function () {
           <>
             <Grid>
               {data.participants.map((p) => (
-                <Participant key={p.fields.Name}>
-                  <ParticipantImage src={p.fields.Image} alt={p.fields.Name} />
-                  <ParticipantInner key={p.fields.Name}>
-                    <ParticipantNameWrapper>
-                      <ParticipantName>
-                        {p.fields.Name}{' '}
-                        <Tooltip
-                          placement="top"
-                          title={
-                            p.fields.Status == 'online'
-                              ? `${toFirstName(
-                                  p.fields.Name
-                                )} is working right now!`
-                              : `${toFirstName(
-                                  p.fields.Name
-                                )} is doing other things`
-                          }
-                        >
-                          <Status status={p.fields.Status} />
-                        </Tooltip>
-                      </ParticipantName>
-                      <Tooltip
-                        placement="top"
-                        title={`See what ${toFirstName(
-                          p.fields.Name
-                        )} is making on Twitter`}
-                      >
-                        <TwitterWrapper
-                          href={`https://twitter.com/${p.fields.Twitter}`}
-                          target="_blank"
-                          title={`See what ${toFirstName(
-                            p.fields.Name
-                          )} is making on Twitter`}
-                        >
-                          <Twitter size={18} />
-                        </TwitterWrapper>
-                      </Tooltip>
-                    </ParticipantNameWrapper>
-                    <ParticipantLocation>
-                      <MapPin size={12} /> {p.fields.Location}
-                    </ParticipantLocation>
-                    <ParticipantStatusMessage>
-                      "{p.fields.Message}"
-                    </ParticipantStatusMessage>
-                    {p.fields['Current Project'] && (
-                      <ForProject
-                        currentProjectId={p.fields['Current Project'][0]}
-                        allProjects={data.projects}
-                      />
+                <Participant key={p.fields?.Name}>
+                  <ParticipantImage src={p.fields?.Image} />
+                  <ParticipantInner>
+                    {p.fields && (
+                      <>
+                        <ParticipantNameWrapper>
+                          <ParticipantName>
+                            {p.fields.Name}{' '}
+                            <Tooltip
+                              placement="top"
+                              title={
+                                p.fields.Status == 'online'
+                                  ? `${toFirstName(
+                                      p.fields.Name
+                                    )} is working right now!`
+                                  : `${toFirstName(
+                                      p.fields.Name
+                                    )} is doing other things`
+                              }
+                            >
+                              <Status status={p.fields.Status} />
+                            </Tooltip>
+                          </ParticipantName>
+                          <Tooltip
+                            placement="top"
+                            title={`See what ${toFirstName(
+                              p.fields.Name
+                            )} is making on Twitter`}
+                          >
+                            <TwitterWrapper
+                              href={`https://twitter.com/${p.fields.Twitter}`}
+                              target="_blank"
+                              title={`See what ${toFirstName(
+                                p.fields?.Name
+                              )} is making on Twitter`}
+                            >
+                              <Twitter size={18} />
+                            </TwitterWrapper>
+                          </Tooltip>
+                        </ParticipantNameWrapper>
+                        <ParticipantLocation>
+                          <MapPin size={12} /> {p.fields.Location}
+                        </ParticipantLocation>
+                        <ParticipantStatusMessage>
+                          "{p.fields.Message}"
+                        </ParticipantStatusMessage>
+                        {p.fields['Current Project'] && (
+                          <ForProject
+                            currentProjectId={p.fields['Current Project'][0]}
+                            allProjects={data.projects}
+                          />
+                        )}
+                        {p.fields['Last Updated'] && (
+                          <LastUpdated>
+                            {capitalize(
+                              formatDistance(
+                                new Date(p.fields['Last Updated']),
+                                new Date()
+                              )
+                            )}{' '}
+                            ago
+                          </LastUpdated>
+                        )}
+                      </>
                     )}
-                    <LastUpdated>
-                      {capitalize(
-                        formatDistance(
-                          new Date(p.fields['Last Updated']),
-                          new Date()
-                        )
-                      )}{' '}
-                      ago
-                    </LastUpdated>
                   </ParticipantInner>
                 </Participant>
               ))}
@@ -630,8 +539,15 @@ export default function () {
             </ProjectWrapper>
           </>
         )}
-        <Subheading>What is this?</Subheading>
-        <Subheading>Reach us</Subheading>
+        <Content>
+          <Subheading>What is this?</Subheading>
+          <Typography variant="body1" component="p" paragraph>
+            Lalala
+          </Typography>
+        </Content>
+        <Content>
+          <Subheading>Reach us</Subheading>
+        </Content>
       </Layout>
     </div>
   );

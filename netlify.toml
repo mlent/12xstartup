@@ -1,7 +1,11 @@
 [build]
-  command = "npm run build"
+  command = "yarn build"
   functions = "functions/build"
   publish = "site/public"
 
 [dev]
+  framework = "#custom"
   publish = "site/public"
+  command = "yarn workspace site develop"
+  targetPort = 8000
+  port = 8888
