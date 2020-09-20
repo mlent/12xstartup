@@ -1,0 +1,14 @@
+{
+  "name": "functions",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@types/aws-lambda": "^8.10.61",
+    "axios": "^0.19.2",
+    "typescript": "^3.9.7"
+  }
+}

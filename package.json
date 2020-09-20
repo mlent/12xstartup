@@ -1,9 +1,10 @@
 {
   "private": true,
   "scripts": {
-    "build": "yarn && yarn workspace site build"
+    "build": "yarn && yarn workspace site build && yarn workspace functions build"
   },
   "workspaces": [
-    "site"
+    "site",
+    "functions"
   ]
 }

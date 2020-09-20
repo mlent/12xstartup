@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { Tooltip, Paper, Typography } from '@material-ui/core';
 import { subDays, formatDistance } from 'date-fns';
 import { graphql, useStaticQuery } from 'gatsby';
@@ -221,6 +222,42 @@ const Grid = styled('div')`
   }
 `;
 
+type IAirtableProjectResponse = {
+  records: IAirtableProject[];
+};
+
+type IAirtableProject = {
+  id: string;
+  fields: {
+    Name: string;
+    Participants: string[]; // ID of participant
+    Color: string;
+    Description: string;
+    Status: 'Making' | 'Finished';
+    URL: string;
+  };
+  createdTime: string;
+};
+
+type IAirtableParticipantResponse = {
+  records: IAirtableParticipant[];
+};
+
+type IAirtableParticipant = {
+  id: string;
+  fields: {
+    'Last Updated': string;
+    Name: string;
+    Image: string;
+    Twitter: string;
+    Status: 'online' | 'offline';
+    Message: string;
+    Location: string;
+    'Current Project': string[]; // ID of Project
+  };
+  createdTime: string;
+};
+
 type IParticipant = {
   name: string;
   img: string;
@@ -395,8 +432,29 @@ const MakingStatus = styled<'div', { status: 'making' | 'finished' }>('div')`
 
 const toFirstName = (name: string) => name.split(' ')[0];
 
+const ForProject = ({
+  currentProjectId,
+  allProjects
+}: {
+  currentProjectId: string;
+  allProjects: IAirtableProject[];
+}) => {
+  const currentProject = allProjects.find((p) => p.id === currentProjectId);
+  if (!currentProject) {
+    return null;
+  }
+  return (
+    <ParticipantCurrentProject>
+      for{' '}
+      <a href={currentProject.fields.URL} target="_blank" rel="noopener">
+        {currentProject.fields.Name}
+      </a>
+    </ParticipantCurrentProject>
+  );
+};
+
 export default function () {
-  const data: Data = useStaticQuery(graphql`
+  const siteData: Data = useStaticQuery(graphql`
     query {
       site {
         siteMetadata {
@@ -407,7 +465,27 @@ export default function () {
       }
     }
   `);
-  const siteMetadata = data.site.siteMetadata;
+
+  const siteMetadata = siteData.site.siteMetadata;
+
+  const [data, setData] = useState<{
+    projects: IAirtableProject[];
+    participants: IAirtableParticipant[];
+  } | null>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios.get('/.netlify/functions/get-data');
+      const r = {
+        projects: result.data.projects.records,
+        participants: result.data.participants.records
+      };
+      setData(r);
+      console.log(r);
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <div>
@@ -440,89 +518,107 @@ export default function () {
           </div>
         </Wrapper>
         <Subheading>Meet the crew</Subheading>
-        <Grid>
-          {PARTICIPANTS.map((p) => (
-            <Participant key={p.name}>
-              <ParticipantImage src={p.img} alt={p.name} />
-              <ParticipantInner key={p.name}>
-                <ParticipantNameWrapper>
-                  <ParticipantName>
-                    {p.name}{' '}
-                    <Tooltip
-                      placement="top"
-                      title={
-                        p.status == 'online'
-                          ? `${toFirstName(p.name)} is working right now!`
-                          : `${toFirstName(p.name)} is doing other things`
-                      }
-                    >
-                      <Status status={p.status} />
-                    </Tooltip>
-                  </ParticipantName>
-                  <Tooltip
-                    placement="top"
-                    title={`See what ${toFirstName(
-                      p.name
-                    )} is making on Twitter`}
+        {data && (
+          <>
+            <Grid>
+              {data.participants.map((p) => (
+                <Participant key={p.fields.Name}>
+                  <ParticipantImage src={p.fields.Image} alt={p.fields.Name} />
+                  <ParticipantInner key={p.fields.Name}>
+                    <ParticipantNameWrapper>
+                      <ParticipantName>
+                        {p.fields.Name}{' '}
+                        <Tooltip
+                          placement="top"
+                          title={
+                            p.fields.Status == 'online'
+                              ? `${toFirstName(
+                                  p.fields.Name
+                                )} is working right now!`
+                              : `${toFirstName(
+                                  p.fields.Name
+                                )} is doing other things`
+                          }
+                        >
+                          <Status status={p.fields.Status} />
+                        </Tooltip>
+                      </ParticipantName>
+                      <Tooltip
+                        placement="top"
+                        title={`See what ${toFirstName(
+                          p.fields.Name
+                        )} is making on Twitter`}
+                      >
+                        <TwitterWrapper
+                          href={`https://twitter.com/${p.fields.Twitter}`}
+                          target="_blank"
+                          title={`See what ${toFirstName(
+                            p.fields.Name
+                          )} is making on Twitter`}
+                        >
+                          <Twitter size={18} />
+                        </TwitterWrapper>
+                      </Tooltip>
+                    </ParticipantNameWrapper>
+                    <ParticipantLocation>
+                      <MapPin size={12} /> {p.fields.Location}
+                    </ParticipantLocation>
+                    <ParticipantStatusMessage>
+                      "{p.fields.Message}"
+                    </ParticipantStatusMessage>
+                    {p.fields['Current Project'] && (
+                      <ForProject
+                        currentProjectId={p.fields['Current Project'][0]}
+                        allProjects={data.projects}
+                      />
+                    )}
+                    <LastUpdated>
+                      LAST UPDATED:{' '}
+                      {formatDistance(
+                        new Date(p.fields['Last Updated']),
+                        new Date()
+                      )}{' '}
+                      ago
+                    </LastUpdated>
+                  </ParticipantInner>
+                </Participant>
+              ))}
+            </Grid>
+            <Shoutout>
+              <Typography variant="body1" component="p" paragraph>
+                Plus our trusty advisor and resident lurker{' '}
+                <ShoutoutImg src="/images/dom.jpeg" alt="Dominic Monn" />{' '}
+                <a href="https://twitter.com/dqmonn">Dominic Monn</a>.
+              </Typography>
+            </Shoutout>
+            <Subheading>What we're building</Subheading>
+            <ProjectWrapper>
+              {PROJECTS.map((p) => (
+                <ProjectGrid key={p.projectName}>
+                  <ProjectLink
+                    href={p.projectUrl}
+                    target="_blank"
+                    rel="noopener"
                   >
-                    <TwitterWrapper
-                      href={`https://twitter.com/${p.twitter}`}
-                      target="_blank"
-                      title={`See what ${toFirstName(
-                        p.name
-                      )} is making on Twitter`}
-                    >
-                      <Twitter size={18} />
-                    </TwitterWrapper>
-                  </Tooltip>
-                </ParticipantNameWrapper>
-                <ParticipantLocation>
-                  <MapPin size={12} /> {p.location}
-                </ParticipantLocation>
-                <ParticipantStatusMessage>
-                  "{p.statusMessage}"
-                </ParticipantStatusMessage>
-                <ParticipantCurrentProject>
-                  for{' '}
-                  <a href={p.currentProjectUrl} target="_blank" rel="noopener">
-                    {p.currentProjectName}
-                  </a>
-                </ParticipantCurrentProject>
-                <LastUpdated>
-                  LAST UPDATED:{' '}
-                  {formatDistance(subDays(p.lastUpdated, 1), new Date())} ago
-                </LastUpdated>
-              </ParticipantInner>
-            </Participant>
-          ))}
-        </Grid>
-        <Shoutout>
-          <Typography variant="body1" component="p" paragraph>
-            Plus our trusty advisor and resident lurker{' '}
-            <ShoutoutImg src="/images/dom.jpeg" alt="Dominic Monn" />{' '}
-            <a href="https://twitter.com/dqmonn">Dominic Monn</a>.
-          </Typography>
-        </Shoutout>
-        <Subheading>What we're building</Subheading>
-        <ProjectWrapper>
-          {PROJECTS.map((p) => (
-            <ProjectGrid key={p.projectName}>
-              <ProjectLink href={p.projectUrl} target="_blank" rel="noopener">
-                <ProjectIcon iconColor={p.iconColor} icon={p.icon} />{' '}
-                {p.projectName}&nbsp;
-                <ExternalLink size={16} style={{ opacity: 0.5 }} />
-              </ProjectLink>
-              <ProjectDescription>{p.projectDescription}</ProjectDescription>
-              <ProjectParticipantName>
-                {toFirstName(p.participant.name)}
-              </ProjectParticipantName>
-              <MakingStatus status={p.status}>
-                {p.status === 'making' && 'Making now'}
-                {p.status === 'finished' && 'Shipped'}
-              </MakingStatus>
-            </ProjectGrid>
-          ))}
-        </ProjectWrapper>
+                    <ProjectIcon iconColor={p.iconColor} icon={p.icon} />{' '}
+                    {p.projectName}&nbsp;
+                    <ExternalLink size={16} style={{ opacity: 0.5 }} />
+                  </ProjectLink>
+                  <ProjectDescription>
+                    {p.projectDescription}
+                  </ProjectDescription>
+                  <ProjectParticipantName>
+                    {toFirstName(p.participant.name)}
+                  </ProjectParticipantName>
+                  <MakingStatus status={p.status}>
+                    {p.status === 'making' && 'Making now'}
+                    {p.status === 'finished' && 'Shipped'}
+                  </MakingStatus>
+                </ProjectGrid>
+              ))}
+            </ProjectWrapper>
+          </>
+        )}
         <Subheading>What is this?</Subheading>
         <Subheading>Reach us</Subheading>
       </Layout>
