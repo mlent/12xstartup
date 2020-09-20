@@ -50,7 +50,10 @@ export const handler = async function (
     callback(null, {
       statusCode: 200,
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ projects, participants: newParticipants }),
+      body: JSON.stringify({
+        projects,
+        participants: { records: newParticipants },
+      }),
     });
   } else {
     callback(null, {
