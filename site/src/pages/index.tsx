@@ -630,8 +630,10 @@ export default function () {
           </Typography>
           <Typography variant="body1" component="p" paragraph>
             To follow along, you can find us on Twitter or join the mailing list
-            above to get notified about our first livestreamed demo.
+            to get notified about our first livestreamed demo:
           </Typography>
+          <InnerForm />
+          <br />
           <Typography variant="body1" component="p" paragraph>
             Wish us luck (and perseverance)!
           </Typography>
