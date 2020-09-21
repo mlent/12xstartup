@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { Typography, Paper, Button, TextField } from '@material-ui/core';
+import { Button, TextField } from '@material-ui/core';
 import styled from '../styled';
 import { SuccessMessage, ErrorMessage } from './Alerts';
-import { SUBSCRIBER_COUNT } from '../constants';
 
 let gtag: any;
 
@@ -14,27 +13,8 @@ if (typeof window !== 'undefined') {
 
 // TODO: Replace with dedicated form!
 
-const YOUR_FORM_ID = '1377786';
+const YOUR_FORM_ID = '1683915';
 const YOUR_FORM_URL = `https://app.convertkit.com/forms/${YOUR_FORM_ID}/subscriptions`;
-
-const FormWrapper = styled(Paper)`
-  padding: ${(p) => p.theme.spacing(3)}px ${(p) => p.theme.spacing(6)}px
-    ${(p) => p.theme.spacing(6)}px;
-`;
-
-const Content = styled('p')`
-  text-align: left;
-  font-size: 1.4rem;
-  margin: 2rem auto;
-
-  a {
-    border-bottom: 2px solid white;
-  }
-
-  a:focus {
-    outline: blue;
-  }
-`;
 
 const InnerFormWrapper = styled('form')`
   display: grid;
@@ -72,8 +52,7 @@ export const InnerForm = () => {
         setStatus('SUCCESS');
         try {
           gtag('event', 'Subscribe', {
-            event_category: 'Newsletter',
-            event_label: 'Email Course'
+            event_category: 'Mailing List'
           });
         } catch (err) {}
         return;
@@ -127,52 +106,16 @@ export const InnerForm = () => {
       </InnerFormWrapper>
       {status === 'SUCCESS' && (
         <SuccessMessage>
-          Please check your inbox to confirm your subscription!
+          Please check your inbox to confirm your email address.
         </SuccessMessage>
       )}
       {status === 'ERROR' && (
         <ErrorMessage>
           There was an error trying to sign you up! Is your privacy browser
           extension possibly blocking the request to my newsletter provider? Try
-          disabling it or signing up at{' '}
-          <a href="https://bloggingfordevs.ck.page/signup" target="_blank">
-            https://bloggingfordevs.ck.page/signup
-          </a>
+          disabling it just this once.
         </ErrorMessage>
       )}
     </div>
-  );
-};
-
-export const SubscriptionForm = ({
-  title,
-  description
-}: {
-  title?: string;
-  description?: React.ReactNode;
-}) => {
-  return (
-    <FormWrapper>
-      <Typography
-        variant="h4"
-        component="p"
-        style={{ fontWeight: 700, marginTop: '12px' }}
-      >
-        {title || 'Get the "Blogging for Devs" free email course'}
-      </Typography>
-      <Content>
-        {description || (
-          <span>
-            Whether you're just starting out, trying to revive an existing blog,
-            or want to get past a plateau, this course and newsletter is for
-            you.
-            <br />
-            <br />
-            Join over {SUBSCRIBER_COUNT} developers growing their blogs now:
-          </span>
-        )}
-      </Content>
-      <InnerForm />
-    </FormWrapper>
   );
 };
