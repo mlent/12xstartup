@@ -390,7 +390,15 @@ export default function () {
 
   useEffect(() => {
     const fetchData = async () => {
-      const result: IResponse = await axios.get('/.netlify/functions/get-data');
+      // Allow running site locally without access to locally running Netlify function
+      const useFixture =
+        typeof window !== 'undefined' &&
+        window.location.hostname === 'localhost' &&
+        !new URLSearchParams(window.location.search).get('live');
+
+      const result: IResponse = await axios.get(
+        useFixture ? '/fixture.json' : '/.netlify/functions/get-data'
+      );
       const r = {
         projects: result.data.projects.records,
         participants: result.data.participants.records
