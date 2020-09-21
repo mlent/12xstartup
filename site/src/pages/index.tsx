@@ -160,7 +160,7 @@ const ParticipantStatusMessage = styled('p')`
 `;
 
 const Img = styled<'div', { src: string }>('div')`
-  height: 230px;
+  height: 260px;
   max-width: 100%;
   background-color: #ddd;
   position: relative;
@@ -243,7 +243,7 @@ const ProjectWrapper = styled(Paper)`
 
 const Grid = styled('div')`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-column-gap: ${(p) => p.theme.spacing(1)}px;
   grid-row-gap: ${(p) => p.theme.spacing(1)}px;
   margin: ${(p) => p.theme.spacing(4)}px auto;
@@ -382,7 +382,7 @@ export default function () {
   const [data, setData] = useState<{
     projects: IAirtableProject[];
     participants: IAirtableParticipant[];
-  } | null>({ projects: [], participants: [{} as any, {}, {}, {}, {}] });
+  } | null>({ projects: [], participants: [{} as any, {}, {}, {}] });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -417,7 +417,7 @@ export default function () {
               paragraph
               style={{ fontWeight: 700 }}
             >
-              Five people each build open startups every month for a year ✌️
+              Four people each build open startups every month for a year ✌️
             </Typography>
             <FormWrapper>
               <Typography variant="body1" component="p" paragraph>
@@ -588,7 +588,7 @@ export default function () {
               href="https://www.dylanwilson.net/12x-startup-five-makers-building-open-startups-for-a-year/"
               target="_blank"
             >
-              12x Startup - Five makers building open startups for a year
+              12x Startup - Four makers building open startups for a year
             </StyledLink>
             <br />
             by Dylan Wilson (Sept 20)
@@ -597,7 +597,7 @@ export default function () {
         <Content>
           <Subheading>What is this?</Subheading>
           <Typography variant="body1" component="p" paragraph>
-            12x Startup is a cohort of 5 motivated makers, each building a new
+            12x Startup is a cohort of 4 motivated makers, each building a new
             startup every month for the next year.
           </Typography>
           <Typography variant="body1" component="p" paragraph>
