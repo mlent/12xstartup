@@ -88,25 +88,21 @@ export const handler = async function (
           console.log(`Slack error occurred:`, err);
         });
 
-      callback(null, {
-        statusCode: 200,
-        headers: { 'Content-Type': 'application/json' },
-        body: '',
-      });
+      return { statusCode: 200, body: '' };
     } catch (err) {
-      callback(null, {
+      return {
         statusCode: 500,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ mesage: err }),
-      });
+      };
     }
   } else {
-    callback(null, {
+    return {
       statusCode: 500,
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(
         'Missing data in event body OR method not supported'
       ),
-    });
+    };
   }
 };
