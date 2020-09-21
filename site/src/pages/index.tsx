@@ -214,7 +214,7 @@ const LastUpdated = styled('p')`
 const ProjectGrid = styled('div')`
   display: grid;
   grid-template-areas: 'project-link project-description project-participant project-status';
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 2fr 2fr 1fr 1fr;
   align-items: center;
   grid-column-gap: ${(p) => p.theme.spacing(1)}px;
   grid-row-gap: ${(p) => p.theme.spacing(2)}px;
@@ -539,9 +539,7 @@ export default function () {
                     )}
                   </ProjectParticipantName>
                   <MakingStatus status={p.fields.Status}>
-                    {p.fields.Status === 'Making'
-                      ? '🛠 Making Now'
-                      : '🎉 Shipped'}
+                    {p.fields.Status === 'Making' ? '🛠 Making' : '🎉 Shipped'}
                   </MakingStatus>
                 </ProjectGrid>
               ))}
