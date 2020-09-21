@@ -428,7 +428,7 @@ export default function () {
             </FormWrapper>
           </div>
         </Wrapper>
-        <Subheading>Meet the crew</Subheading>
+        <Subheading>Current Status</Subheading>
         {data && (
           <>
             <Grid>
