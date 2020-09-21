@@ -19,6 +19,7 @@ type Data = {
 
 const StyledLink = styled('a')`
   border-bottom: 1px solid #fff;
+  color: #fff;
 `;
 
 const Content = styled('div')`
@@ -555,7 +556,7 @@ export default function () {
                 onClick={(e: React.SyntheticEvent) => {
                   e.preventDefault();
                   const left = window.screen.width / 3;
-                  const top = window.screen.height / 2;
+                  const top = 100;
                   window.open(
                     'https://airtable.com/shrEHSP7akhszHnao',
                     'request-startup',
@@ -573,11 +574,59 @@ export default function () {
         <Content>
           <Subheading>What is this?</Subheading>
           <Typography variant="body1" component="p" paragraph>
-            Lalala
+            12x Startup is a cohort of 5 motivated makers, each building a new
+            startup every month for the next year.
+          </Typography>
+          <Typography variant="body1" component="p" paragraph>
+            (In theory that makes 60 startups shipped by November 2021!)
+          </Typography>
+          <Typography variant="body1" component="p" paragraph>
+            The goal is to try lots of things, ship quickly, learn from our own
+            projects (and each others') and to build in public.
+          </Typography>
+          <Typography variant="body1" component="p" paragraph>
+            And above all else, we want to find a few projects in the process
+            worth focusing on long-term.
+          </Typography>
+          <Typography variant="body1" component="p" paragraph>
+            Like many others, we were inspired by Pieter Levels'{' '}
+            <StyledLink
+              href="https://levels.io/12-startups-12-months/"
+              target="_blank"
+              rel="noopener"
+            >
+              12 Startups in 12 Months
+            </StyledLink>
+            . After realizing that a few people planned to do it on their own,
+            we banded together to form a serial maker Voltron!
+          </Typography>
+          <Typography variant="body1" component="p" paragraph>
+            The name is also a bit of a joke about 10x developers. Instead of
+            being 12x better at building startups, we're each just going to
+            build 12 of them until we're good at it.
+          </Typography>
+          <Typography variant="body1" component="p" paragraph>
+            To follow along, you can find us on Twitter or join the mailing list
+            above to get notified about our first livestreamed demo.
+          </Typography>
+          <Typography variant="body1" component="p" paragraph>
+            Wish us luck (and perseverance)!
           </Typography>
         </Content>
         <Content>
           <Subheading>Reach us</Subheading>
+          <Typography
+            variant="body1"
+            component="p"
+            paragraph
+            style={{ textAlign: 'center' }}
+          >
+            Email us at{' '}
+            <StyledLink href="mailto:hey@12xstartup.com">
+              hey@12xstartup.com
+            </StyledLink>
+            .
+          </Typography>
         </Content>
       </Layout>
     </div>
