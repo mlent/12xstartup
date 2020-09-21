@@ -6,10 +6,10 @@ export const handler = async function (
   _context: any,
   callback: APIGatewayProxyCallback
 ) {
-  if (event.httpMethod === 'POST' && event.body) {
-    const jsonBody = JSON.parse(event.body) as { message: string };
+  if (event.httpMethod === 'POST') {
+    // const jsonBody = JSON.parse(event.body) as { message: string };
 
-    console.log(jsonBody);
+    // console.log(jsonBody);
 
     /*
     const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY;
@@ -25,9 +25,7 @@ export const handler = async function (
     callback(null, {
       statusCode: 200,
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        response: 'OK',
-      }),
+      body: event.body as string,
     });
   } else {
     callback(null, {
