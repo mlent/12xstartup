@@ -572,6 +572,29 @@ export default function () {
           </>
         )}
         <Content>
+          <Subheading>Latest Writeups</Subheading>
+          <Typography variant="body1" component="p" paragraph>
+            <StyledLink
+              href="https://dpashutskii.com/year-of-making"
+              target="_blank"
+            >
+              A Year of Making
+            </StyledLink>
+            <br />
+            by Dmitrii Pashutskii (Sept 21)
+          </Typography>
+          <Typography variant="body1" component="p" paragraph>
+            <StyledLink
+              href="https://www.dylanwilson.net/12x-startup-five-makers-building-open-startups-for-a-year/"
+              target="_blank"
+            >
+              12x Startup - Five makers building open startups for a year
+            </StyledLink>
+            <br />
+            by Dylan Wilson (Sept 20)
+          </Typography>
+        </Content>
+        <Content>
           <Subheading>What is this?</Subheading>
           <Typography variant="body1" component="p" paragraph>
             12x Startup is a cohort of 5 motivated makers, each building a new
