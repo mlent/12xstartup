@@ -294,6 +294,7 @@ type IAirtableParticipant = {
     Name: string;
     Image: string;
     Twitter: string;
+    Slack: string;
     Status: 'online' | 'offline';
     Message: string;
     Location: string;
@@ -506,7 +507,7 @@ export default function () {
               <Typography variant="body1" component="p" paragraph>
                 Plus our trusty advisor and resident lurker{' '}
                 <ShoutoutImg src="/images/dom.jpeg" alt="Dominic Monn" />{' '}
-                <StyledLink href="https://twitter.com/dqmonn">
+                <StyledLink href="https://twitter.com/dqmonn" target="_blank">
                   Dominic Monn
                 </StyledLink>
                 .
