@@ -60,6 +60,8 @@ export const handler = async function (
       return;
     }
 
+    const newMessage = jsonBody.text.replace('+', ' ');
+
     // Update status in Airtable
     try {
       await axios.patch(
@@ -69,14 +71,17 @@ export const handler = async function (
             {
               id: record.id,
               fields: {
-                Message: jsonBody.text,
+                Message: newMessage,
               },
             },
           ],
         }
       );
 
-      await client.chat.postMessage({ channel: jsonBody.channel_id, text: '' });
+      await client.chat.postMessage({
+        channel: jsonBody.channel_id,
+        text: `✨ Your status has been updated to: "${newMessage}"`,
+      });
 
       callback(null, {
         statusCode: 200,
