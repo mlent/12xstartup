@@ -539,7 +539,9 @@ export default function () {
                     )}
                   </ProjectParticipantName>
                   <MakingStatus status={p.fields.Status}>
-                    {p.fields.Status}
+                    {p.fields.Status === 'Making'
+                      ? '🛠 Making Now'
+                      : '🎉 Shipped'}
                   </MakingStatus>
                 </ProjectGrid>
               ))}
