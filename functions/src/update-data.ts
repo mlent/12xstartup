@@ -82,7 +82,7 @@ export const handler = async function (
       await client.chat
         .postMessage({
           channel: jsonBody.channel_id,
-          text: `✨ ${record.fields.Name}'s status has been updated to: "${newMessage}"`,
+          text: `🛠  ${record.fields.Name}'s status has been updated to: "${newMessage}"`,
         })
         .catch((err) => {
           console.log(`Slack error occurred:`, err);
@@ -91,7 +91,7 @@ export const handler = async function (
       callback(null, {
         statusCode: 200,
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: 'OK' }),
+        body: '',
       });
     } catch (err) {
       callback(null, {
