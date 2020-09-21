@@ -1,12 +1,11 @@
 import styled from '../styled';
 
 export const SuccessMessage = styled('div')`
-  border: 1px solid #bae637;
   border-radius: 8px;
   background-color: #eaff8f;
   padding: 12px 24px;
   color: #254000;
-  font-size: 18px;
+  font-size: 16px;
 
   code {
     display: inline;
@@ -18,10 +17,9 @@ export const SuccessMessage = styled('div')`
 `;
 
 export const ErrorMessage = styled('div')`
-  border: 1px solid #ffc53d;
   border-radius: 8px;
   background-color: #ffe58f;
   color: #613400;
-  font-size: 18px;
+  font-size: 16px;
   padding: 12px 24px;
 `;

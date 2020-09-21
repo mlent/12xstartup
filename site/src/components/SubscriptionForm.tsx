@@ -11,8 +11,6 @@ if (typeof window !== 'undefined') {
   gtag = () => {};
 }
 
-// TODO: Replace with dedicated form!
-
 const YOUR_FORM_ID = '1683915';
 const YOUR_FORM_URL = `https://app.convertkit.com/forms/${YOUR_FORM_ID}/subscriptions`;
 
@@ -66,12 +64,12 @@ export const InnerForm = () => {
 
   return (
     <div>
-      <InnerFormWrapper
-        action={YOUR_FORM_URL}
-        method="post"
-        onSubmit={handleSubmit}
-      >
-        {status !== 'SUCCESS' && (
+      {status !== 'SUCCESS' && (
+        <InnerFormWrapper
+          action={YOUR_FORM_URL}
+          method="post"
+          onSubmit={handleSubmit}
+        >
           <>
             <TextField
               label="Your email"
@@ -102,11 +100,12 @@ export const InnerForm = () => {
               Get an invite
             </Button>
           </>
-        )}
-      </InnerFormWrapper>
+        </InnerFormWrapper>
+      )}
       {status === 'SUCCESS' && (
         <SuccessMessage>
-          Please check your inbox to confirm your email address.
+          <strong>Almost there!</strong> Please check your inbox to confirm your
+          email address.
         </SuccessMessage>
       )}
       {status === 'ERROR' && (
