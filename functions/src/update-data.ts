@@ -9,6 +9,8 @@ export const handler = async function (
   if (event.httpMethod === 'POST' && event.body) {
     const jsonBody = JSON.parse(event.body) as { message: string };
 
+    console.log(jsonBody);
+
     /*
     const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY;
     const SLACKBOT_API_KEY = process.env.SLACKBOT_API_KEY;
@@ -24,7 +26,7 @@ export const handler = async function (
       statusCode: 200,
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        ...jsonBody,
+        response: 'OK',
       }),
     });
   } else {
