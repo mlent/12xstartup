@@ -119,7 +119,7 @@ const Status = styled<'div', { status: 'online' | 'offline' }>('div')`
   height: 12px;
   width: 12px;
   background-color: ${(p) =>
-    p.status === 'online' ? 'rgba(51, 217, 178, 1)' : '#8c8c8c'};
+    p.status === 'online' ? 'rgba(51, 217, 178, 1)' : '#DDD'};
   border-radius: 100%;
   ${(p) =>
     p.status === 'online' &&

@@ -13,7 +13,7 @@ module.exports = {
     logoLabel: '12x Startup',
     searchText: 'Search',
     faviconUrl: '/favicon.png',
-    socialSharingImageUrl: '/images/social-sharing-preview.png',
+    socialSharingImageUrl: '/images/social-sharing-image.jpg',
     facebookUrl: 'https://www.facebook.com/yourpage',
     googleTagManagerId: 'UA-178445735-1',
     googleAnalyticsMeasurementId: 'UA-178445735-1'
