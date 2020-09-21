@@ -149,6 +149,9 @@ const ParticipantInner = styled('div')`
 `;
 
 const ParticipantCurrentProject = styled('p')`
+  position: absolute;
+  bottom: ${(p) => p.theme.spacing(4)}px;
+
   a {
     color: ${(p) => p.theme.palette.primary.main};
     font-weight: ${(p) => p.theme.typography.fontWeightBold};
