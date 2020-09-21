@@ -78,10 +78,11 @@ export const handler = async function (
         }
       );
 
+      // Post a status message in the channel
       await client.chat
         .postMessage({
           channel: jsonBody.channel_id,
-          text: `✨ Your status has been updated to: "${newMessage}"`,
+          text: `✨ ${record.fields.Name}'s status has been updated to: "${newMessage}"`,
         })
         .catch((err) => {
           console.log(`Slack error occurred:`, err);
