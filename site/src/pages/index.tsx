@@ -613,7 +613,7 @@ export default function () {
             startup every month for the next year.
           </Typography>
           <Typography variant="body1" component="p" paragraph>
-            (In theory that makes 60 startups shipped by November 2021!)
+            (In theory that makes 48 startups shipped by November 2021!)
           </Typography>
           <Typography variant="body1" component="p" paragraph>
             The goal is to try lots of things, ship quickly, learn from our own
