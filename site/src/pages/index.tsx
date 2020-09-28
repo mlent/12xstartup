@@ -593,7 +593,7 @@ export default function () {
               A Year of Making
             </StyledLink>
             <br />
-            by Dmitrii Pashutskii (Sept 21)
+            by Dmitrii Pashutskii (Sept 28)
           </Typography>
           <Typography variant="body1" component="p" paragraph>
             <StyledLink
