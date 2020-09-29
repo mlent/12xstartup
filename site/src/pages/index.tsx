@@ -597,7 +597,7 @@ export default function () {
           </Typography>
           <Typography variant="body1" component="p" paragraph>
             <StyledLink
-              href="https://www.dylanwilson.net/12x-startup-five-makers-building-open-startups-for-a-year/"
+              href="https://www.dylanwilson.net/12x-startup-four-makers-building-open-startups-for-a-year/"
               target="_blank"
             >
               12x Startup - Four makers building open startups for a year
