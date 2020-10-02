@@ -605,6 +605,16 @@ export default function () {
             <br />
             by Dylan Wilson (Sept 20)
           </Typography>
+	  <Typography variant="body1" component="p" paragraph>
+            <StyledLink
+              href="https://twitter.com/ToheebDotCom/status/1311747021305503746"
+              target="_blank"
+            >
+              One Hell of a Ride
+            </StyledLink>
+            <br />
+            by Toheeb Ogunbiyi (Oct 1)
+          </Typography>
         </Content>
         <Content>
           <Subheading>What is this?</Subheading>
