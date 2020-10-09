@@ -533,10 +533,6 @@ export default function () {
                     target="_blank"
                     rel="noopener"
                   >
-                    <ProjectIcon
-                      iconColor={p.fields.Color}
-                      icon={p.fields.URL}
-                    />{' '}
                     {p.fields.Name}&nbsp;
                     <ExternalLink size={16} style={{ opacity: 0.5 }} />
                   </ProjectLink>
@@ -587,6 +583,26 @@ export default function () {
           <Subheading>Latest Writeups</Subheading>
           <Typography variant="body1" component="p" paragraph>
             <StyledLink
+              href="https://monicalent.com/12x-startup/"
+              target="_blank"
+            >
+              Let's go! The 12 Startups in 12 Months Challenge Starts Now
+            </StyledLink>
+            <br />
+            by Monica Lent (Oct 9)
+          </Typography>
+          <Typography variant="body1" component="p" paragraph>
+            <StyledLink
+              href="https://twitter.com/ToheebDotCom/status/1311747021305503746"
+              target="_blank"
+            >
+              One Hell of a Ride
+            </StyledLink>
+            <br />
+            by Toheeb Ogunbiyi (Oct 1)
+          </Typography>
+          <Typography variant="body1" component="p" paragraph>
+            <StyledLink
               href="https://dpashutskii.com/year-of-making"
               target="_blank"
             >
@@ -604,16 +620,6 @@ export default function () {
             </StyledLink>
             <br />
             by Dylan Wilson (Sept 20)
-          </Typography>
-	  <Typography variant="body1" component="p" paragraph>
-            <StyledLink
-              href="https://twitter.com/ToheebDotCom/status/1311747021305503746"
-              target="_blank"
-            >
-              One Hell of a Ride
-            </StyledLink>
-            <br />
-            by Toheeb Ogunbiyi (Oct 1)
           </Typography>
         </Content>
         <Content>
