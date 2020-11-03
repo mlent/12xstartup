@@ -582,6 +582,16 @@ export default function () {
           <Subheading>Latest Writeups</Subheading>
           <Typography variant="body1" component="p" paragraph>
             <StyledLink
+              href="https://www.hexdevs.com/12xstartup/"
+              target="_blank"
+            >
+              12x Startup
+            </StyledLink>
+            <br />
+            by Stefanni Brasil (Nov 1)
+          </Typography>
+          <Typography variant="body1" component="p" paragraph>
+            <StyledLink
               href="https://monicalent.com/12x-startup/"
               target="_blank"
             >
