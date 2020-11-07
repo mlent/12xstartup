@@ -246,7 +246,7 @@ const ProjectWrapper = styled(Paper)`
 
 const Grid = styled('div')`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-column-gap: ${(p) => p.theme.spacing(1)}px;
   grid-row-gap: ${(p) => p.theme.spacing(1)}px;
   margin: ${(p) => p.theme.spacing(4)}px auto;
@@ -634,11 +634,11 @@ export default function () {
         <Content>
           <Subheading>What is this?</Subheading>
           <Typography variant="body1" component="p" paragraph>
-            12x Startup is a cohort of 4 motivated makers, each building a new
+            12x Startup is a cohort of 6 motivated makers, each building a new
             startup every month for the next year.
           </Typography>
           <Typography variant="body1" component="p" paragraph>
-            (In theory that makes 48 startups shipped by November 2021!)
+            (In theory that makes 72 startups shipped by November 2021!)
           </Typography>
           <Typography variant="body1" component="p" paragraph>
             The goal is to try lots of things, ship quickly, learn from our own
