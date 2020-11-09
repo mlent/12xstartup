@@ -246,11 +246,11 @@ const ProjectWrapper = styled(Paper)`
 
 const Grid = styled('div')`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-column-gap: ${(p) => p.theme.spacing(1)}px;
   grid-row-gap: ${(p) => p.theme.spacing(1)}px;
   margin: ${(p) => p.theme.spacing(4)}px auto;
-  max-width: 1300px;
+  max-width: 900px;
 
   @media (max-width: 1000px) {
     grid-template-columns: 1fr 1fr;
