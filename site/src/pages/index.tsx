@@ -279,7 +279,7 @@ type IAirtableProject = {
     Participants: string[]; // ID of participant
     Color: string;
     Description: string;
-    Status: 'Making' | 'Finished';
+    Status: 'Making' | 'Finished' | 'Frozen';
     URL: string;
   };
   createdTime: string;
@@ -307,11 +307,15 @@ type IAirtableParticipant = {
 
 const ProjectLink = styled('a')`
   grid-area: project-link;
-  display: flex;
-  align-items: center;
   color: ${(p) => p.theme.palette.primary.main};
   font-weight: ${(p) => p.theme.typography.fontWeightBold};
   width: 60%;
+
+  svg {
+    left: 3px;
+    position: relative;
+    top: 2px;
+  }
 `;
 
 const ProjectDescription = styled('div')`
@@ -332,12 +336,31 @@ const ProjectIcon = styled<'div', { iconColor: string; icon: string }>('div')`
   background-color: ${(p) => p.iconColor};
 `;
 
-const MakingStatus = styled<'div', { status: 'Making' | 'Finished' }>('div')`
+const MakingStatus = styled<
+  'div',
+  { status: 'Making' | 'Finished' | 'Frozen' }
+>('div')`
   grid-area: project-status;
   display: inline-block;
-  background-color: ${(p) => (p.status === 'Making' ? '#ffe58f' : '#eaff8f')};
+  background-color: ${(p) => {
+    if (p.status === 'Making') {
+      return '#ffe58f';
+    }
+    if (p.status === 'Finished') {
+      return '#eaff8f';
+    }
+    return '#e6f7ff';
+  }};
   text-align: center;
-  color: ${(p) => (p.status === 'Making' ? '#ad6800' : '#5b8c00')};
+  color: ${(p) => {
+    if (p.status === 'Making') {
+      return '#ad6800';
+    }
+    if (p.status === 'Finished') {
+      return '#5b8c00';
+    }
+    return '#1890ff';
+  }};
   padding: ${(p) => p.theme.spacing(1)}px ${(p) => p.theme.spacing(3)}px;
   font-weight: ${(p) => p.theme.typography.fontWeightBold};
   border-radius: ${(p) => p.theme.custom.borderRadius.unit * 2}px;
@@ -532,7 +555,7 @@ export default function () {
                     target="_blank"
                     rel="noopener"
                   >
-                    {p.fields.Name}&nbsp;
+                    {p.fields.Name}
                     <ExternalLink size={16} style={{ opacity: 0.5 }} />
                   </ProjectLink>
                   <ProjectDescription>
@@ -546,7 +569,9 @@ export default function () {
                     )}
                   </ProjectParticipantName>
                   <MakingStatus status={p.fields.Status}>
-                    {p.fields.Status === 'Making' ? '🛠 Making' : '🎉 Shipped'}
+                    {p.fields.Status === 'Making' && '🛠 Making'}
+                    {p.fields.Status === 'Finished' && '🎉 Shipped'}
+                    {p.fields.Status === 'Frozen' && '❄️ On ice'}
                   </MakingStatus>
                 </ProjectGrid>
               ))}
@@ -586,7 +611,6 @@ export default function () {
               target="_blank"
             >
               12xStartup - I'm building 12 startups in 12 months
-
             </StyledLink>
             <br />
             by Lars Karbo (Nov 9)
