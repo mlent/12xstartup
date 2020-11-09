@@ -582,6 +582,17 @@ export default function () {
           <Subheading>Latest Writeups</Subheading>
           <Typography variant="body1" component="p" paragraph>
             <StyledLink
+              href="https://larskarbo.no/12-startups-12-months/"
+              target="_blank"
+            >
+              12xStartup - I'm building 12 startups in 12 months
+
+            </StyledLink>
+            <br />
+            by Lars Karbo (Nov 9)
+          </Typography>
+          <Typography variant="body1" component="p" paragraph>
+            <StyledLink
               href="https://www.hexdevs.com/12xstartup/"
               target="_blank"
             >
