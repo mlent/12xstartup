@@ -607,6 +607,16 @@ export default function () {
           <Subheading>Latest Writeups</Subheading>
           <Typography variant="body1" component="p" paragraph>
             <StyledLink
+              href="https://monicalent.com/paid-community-launch/"
+              target="_blank"
+            >
+              How My Paid Community Made $5K in Its First Week
+            </StyledLink>
+            <br />
+            by Monica Lent (Nov 25)
+          </Typography>
+          <Typography variant="body1" component="p" paragraph>
+            <StyledLink
               href="https://larskarbo.no/12-startups-12-months/"
               target="_blank"
             >
