@@ -607,13 +607,23 @@ export default function () {
           <Subheading>Latest Writeups</Subheading>
           <Typography variant="body1" component="p" paragraph>
             <StyledLink
+              href="https://dpashutskii.com/project-1-learning-story/"
+              target="_blank"
+            >
+              Project #1: Learning Story - community of people who learn in public
+            </StyledLink>
+            <br />
+            by Dmitrii Pashutskii (Dec 11, 2020)
+          </Typography>
+          <Typography variant="body1" component="p" paragraph>
+            <StyledLink
               href="https://monicalent.com/paid-community-launch/"
               target="_blank"
             >
               How My Paid Community Made $5K in Its First Week
             </StyledLink>
             <br />
-            by Monica Lent (Nov 25)
+            by Monica Lent (Nov 25, 2020)
           </Typography>
           <Typography variant="body1" component="p" paragraph>
             <StyledLink
@@ -623,7 +633,7 @@ export default function () {
               12xStartup - I'm building 12 startups in 12 months
             </StyledLink>
             <br />
-            by Lars Karbo (Nov 9)
+            by Lars Karbo (Nov 9, 2020)
           </Typography>
           <Typography variant="body1" component="p" paragraph>
             <StyledLink
@@ -633,7 +643,7 @@ export default function () {
               12x Startup
             </StyledLink>
             <br />
-            by Stefanni Brasil (Nov 1)
+            by Stefanni Brasil (Nov 1, 2020)
           </Typography>
           <Typography variant="body1" component="p" paragraph>
             <StyledLink
@@ -643,7 +653,7 @@ export default function () {
               Let's go! The 12 Startups in 12 Months Challenge Starts Now
             </StyledLink>
             <br />
-            by Monica Lent (Oct 9)
+            by Monica Lent (Oct 9, 2020)
           </Typography>
           <Typography variant="body1" component="p" paragraph>
             <StyledLink
@@ -653,7 +663,7 @@ export default function () {
               One Hell of a Ride
             </StyledLink>
             <br />
-            by Toheeb Ogunbiyi (Oct 1)
+            by Toheeb Ogunbiyi (Oct 1, 2020)
           </Typography>
           <Typography variant="body1" component="p" paragraph>
             <StyledLink
@@ -663,7 +673,7 @@ export default function () {
               A Year of Making
             </StyledLink>
             <br />
-            by Dmitrii Pashutskii (Sept 28)
+            by Dmitrii Pashutskii (Sept 28, 2020)
           </Typography>
           <Typography variant="body1" component="p" paragraph>
             <StyledLink
@@ -673,7 +683,7 @@ export default function () {
               12x Startup - Four makers building open startups for a year
             </StyledLink>
             <br />
-            by Dylan Wilson (Sept 20)
+            by Dylan Wilson (Sept 20, 2020)
           </Typography>
         </Content>
         <Content>
