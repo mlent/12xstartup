@@ -607,6 +607,16 @@ export default function () {
           <Subheading>Latest Writeups</Subheading>
           <Typography variant="body1" component="p" paragraph>
             <StyledLink
+              href="https://larskarbo.no/startup-1-slapper/"
+              target="_blank"
+            >
+              Startup #1 - Slapper
+            </StyledLink>
+            <br />
+            by Lars Karbo (Dec 13, 2020)
+          </Typography>
+          <Typography variant="body1" component="p" paragraph>
+            <StyledLink
               href="https://dpashutskii.com/project-1-learning-story/"
               target="_blank"
             >
