@@ -451,7 +451,7 @@ export default function () {
               paragraph
               style={{ fontWeight: 700 }}
             >
-              Four people each build open startups every month for a year ✌️
+              Six people each build open startups every month for a year ✌️
             </Typography>
             <FormWrapper>
               <Typography variant="body1" component="p" paragraph>
@@ -605,6 +605,16 @@ export default function () {
         )}
         <Content>
           <Subheading>Latest Writeups</Subheading>
+          <Typography variant="body1" component="p" paragraph>
+            <StyledLink
+              href="https://www.youtube.com/watch?v=BApgp9Rsm48"
+              target="_blank"
+            >
+              November and December Updates - Video
+            </StyledLink>
+            <br />
+            by Stefanni Brasil (Dec 14, 2020)
+          </Typography>
           <Typography variant="body1" component="p" paragraph>
             <StyledLink
               href="https://larskarbo.no/startup-1-slapper/"
