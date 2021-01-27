@@ -408,7 +408,7 @@ export default function () {
   const [data, setData] = useState<{
     projects: IAirtableProject[];
     participants: IAirtableParticipant[];
-  } | null>({ projects: [], participants: [{} as any, {}, {}, {}] });
+  } | null>({ projects: [], participants: [{} as any, {}, {}, {}, {}, {}] });
 
   useEffect(() => {
     const fetchData = async () => {
