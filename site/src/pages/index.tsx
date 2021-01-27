@@ -606,6 +606,13 @@ export default function () {
         <Content>
           <Subheading>Latest Writeups</Subheading>
           <Typography variant="body1" component="p" paragraph>
+            <StyledLink href="https://monicalent.com/no-prize/" target="_blank">
+              No Prize for Doing It the Hard Way (2020 Retrospective)
+            </StyledLink>
+            <br />
+            by Monica Lent (Dec 28, 2020)
+          </Typography>
+          <Typography variant="body1" component="p" paragraph>
             <StyledLink
               href="https://www.youtube.com/watch?v=BApgp9Rsm48"
               target="_blank"
@@ -630,7 +637,8 @@ export default function () {
               href="https://dpashutskii.com/project-1-learning-story/"
               target="_blank"
             >
-              Project #1: Learning Story - community of people who learn in public
+              Project #1: Learning Story - community of people who learn in
+              public
             </StyledLink>
             <br />
             by Dmitrii Pashutskii (Dec 11, 2020)
